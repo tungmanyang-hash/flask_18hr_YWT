@@ -1,0 +1,4 @@
+virtualenv --python=“<path to python.exe>" flask_env
+
+cd C:\PortableGit\flask_18hr_YWT
+flask_env\Scripts\activate.bat
