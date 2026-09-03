@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{# block title #}Document{# endblock title #}</title>
+    <title>{% block title %}Document{% endblock title %}</title>
     {% include "_styles(practice).html" %}
     {% include "_scripts(practice).html" %}
 </head>
@@ -14,9 +14,9 @@
 <body>
     {% include "_navbar.html" %}
     <div class="container">
-        {# block page_content #}
+        {% block page_content %}
         {% include "_page_header(practice).html" %}
-        {# endblock page_content #}
+        {% endblock page_content %}
     </div>
 </body>
 
