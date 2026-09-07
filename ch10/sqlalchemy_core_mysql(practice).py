@@ -1,6 +1,7 @@
 #----------practice start------------
 
 import sqlalchemy as db
+form sqlalchemy import 
 
 #連接資料庫
 username = 'flask_user'     # 資料庫帳號
