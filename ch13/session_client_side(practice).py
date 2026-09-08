@@ -37,7 +37,6 @@ def observe_session():
         "observe_session.html", page_header="Session Data(client side)", data=data
     )
 
-
 # ========== practice End ==========
 
 
