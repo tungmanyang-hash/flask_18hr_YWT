@@ -1,4 +1,5 @@
 # practice start
+from flask import Flask, render_template, request, redirect, url_for, session
 
 # practice end
 
@@ -13,7 +14,7 @@ def index():
                            current_time=datetime.utcnow())
 
 # practice start
-
+<form method="POST" action="{{request.full_path}}">
 # practice 
 
 

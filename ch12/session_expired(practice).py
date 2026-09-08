@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 # practice start
-
+from datetime import timedelta, datetime
 # practice end
 
 
@@ -10,7 +10,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'hard to guess string'
 
 # practice start
-
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=0,seconds=10)
 # practice end
 
 @app.route('/')
@@ -29,7 +29,7 @@ def get_session():
             ["form data:", request.form],
             ["session:",session],
             ["session['form_data']:",session.get("form_data")]]
-    return render_template('session.html', page_header="Form", data=data)
+    return render_template('session(practice).html', page_header="Form", data=data)
         
 
 if __name__ == "__main__":

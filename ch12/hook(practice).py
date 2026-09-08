@@ -7,7 +7,11 @@ app.config['SECRET_KEY'] = 'hard to guess string'
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=1)
 
 # practice start
-
+@app.after_request
+def clear_session(response):
+    if request.form.get("session") and request.form["session"]=="True":
+        session.clear()
+    return response
 # practice end
 
 
@@ -32,7 +36,7 @@ def get_session():
             ["form data:", request.form],
             ["session:",session],
             ["session['form_data']:",session.get("form_data")]]
-    return render_template('hook.html', page_header="Form", data=data)
+    return render_template('hook(practice).html', page_header="Form", data=data)
         
 
 if __name__ == "__main__":

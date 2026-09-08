@@ -19,7 +19,11 @@ def get_session():
         return redirect(url_for("get_session"))
     
     # practice start
-
+    if not session.get("li1"):
+        session["li1"]=[1,2,3]
+    else:
+        session["li1"].append(4)
+        session.modified = True # in order to  edit content of session
     # practice end
     
     data = [["method:", request.method],
@@ -27,7 +31,7 @@ def get_session():
             ["form data:", request.form],
             ["session:",session],
             ["session['form_data']:",session.get("form_data")]]
-    return render_template('session.html', page_header="Form", data=data)
+    return render_template('session(practice).html', page_header="Form", data=data)
         
 
 if __name__ == "__main__":
