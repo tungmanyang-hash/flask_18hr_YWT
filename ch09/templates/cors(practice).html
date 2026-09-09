@@ -3,8 +3,10 @@
 {% block title %}index{% endblock title %}
 {% block page_content %}
 {{ super() }}
-<button type="button" class="btn btn-primary" id="fetch_origin_allow_cors">Fetch weahter API (which allowed CORS)</button>
-<button type="button" class="btn btn-warning" id="fetch_origin_not_allow_cors">Fetch bank API(which not allowed CORS)</button>
+<button type="button" class="btn btn-primary" id="fetch_origin_allow_cors">Fetch weahter API (which allowed
+    CORS)</button>
+<button type="button" class="btn btn-warning" id="fetch_origin_not_allow_cors">Fetch bank API(which not allowed
+    CORS)</button>
 <br>
 <p id='result'></p>
 {% endblock page_content %}
@@ -12,4 +14,26 @@
 
 
 <!-- practice start -->
+{% block js %}
+<script>
+    document.getElementById('fetch_origin_allow_cors').addEventListener(
+        'click', function () {
+            console.log('fetch_origin_allow_cors');
+            fetch('{{ api_url_origin_allow_cors }}')
+                .then(r => r.text())
+                .then(t => document.getElementById('result').textContent = t)
+                .catch(e => document.getElementById('result').textContent = 'Error:' + e);
+        }
+    );
+    document.getElementById('fetch_origin_not_allow_cors').addEventListener(
+        'click', function () {
+            fetch('{{ api_url_origin_not_allow_cors }}')
+                .then(r => r.text())
+                .then(t => document.getElementById('result').textContent = t)
+                .catch(e => document.getElementById('result').textContent = 'Error:' + e);
+        }
+    );
+</script>
+{% endblock js %}
+
 <!-- practice end -->
