@@ -6,12 +6,14 @@ from flask import Flask, render_template, request
 from sqlalchemy import func
 
 # ========== practice start ==========
+from blueprint_auth_practice import auth_app_practice, login_required
 # ========== practice start ==========
 from flask_session import Session
 
 app = Flask(__name__)
 
 # ========== practice start ==========
+app.register_blueprint(auth_app_practice)
 # ========== practice end ==========
 app.config["SECRET_KEY"] = "hard to guess string"
 app.config["SESSION_TYPE"] = "filesystem"

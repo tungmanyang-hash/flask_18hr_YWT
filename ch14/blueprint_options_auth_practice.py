@@ -6,6 +6,7 @@ from flask import (Blueprint, Flask, redirect, render_template, request,
 from flask_session import Session
 
 # ========== practice start ==========
+blueprint_options_auth_app = Blueprint('blueprint_options_auth_app', __name__, url_prefix="/auth", template_folder='blueprint_options_auth_templates', static_folder='blueprint_options_auth_static')
 # ========== practice end ==========
 
 USERS = {
@@ -46,6 +47,9 @@ def login():
             session["role"] = USERS.get(session["username"]).get("role")
         return redirect(url_for("data_list"))
     # ========== practice start ==========
+    return render_template("new_login(practice).html")
+
+
     # ========== practice end ==========
 
 

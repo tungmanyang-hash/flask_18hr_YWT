@@ -9,6 +9,7 @@ USERS = {
 
 
 # ========== practice start ==========
+def init_auth(app):
 # ========== practice end ==========
     @app.route("/login", methods=["GET", "POST"])
     def login():

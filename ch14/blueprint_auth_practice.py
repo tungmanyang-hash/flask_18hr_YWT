@@ -6,10 +6,13 @@ from flask import Flask, redirect, render_template, request, session, url_for
 
 from flask_session import Session
 
+from flask import (Blueprint, Flask, redirect, render_template, request,
+                   session, url_for)
 # ========== practice end ==========
 
 
 # ========== practice start ==========
+@auth_app.route("/login", methods=["GET", "POST"])
 # ========== practice end ==========
 
 USERS = {

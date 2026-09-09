@@ -6,12 +6,14 @@ from flask import Flask, render_template, request
 from sqlalchemy import func
 
 # ========== practice start ==========
+from wrapper_init_auth_practice import init_auth
 # ========== practice end ==========
 from flask_session import Session
 
 app = Flask(__name__)
 
 # ========== practice start ==========
+init_auth(app)
 # ========== practice end ==========
 app.config["SECRET_KEY"] = "hard to guess string"
 app.config["SESSION_TYPE"] = "filesystem"
