@@ -28,6 +28,25 @@ USERS = {
 
 
 # ========== practice start ==============
+
+def login_required(role=None):
+    def decorator(f):
+        @wraps(f)
+        def wrapper(*args, **kwargs):
+            if "username" not in session:
+                return redirect(url_for("login"))
+            if role and session.get("role") != role:
+                print(f"session.get('role')={session.get('role')}, role={role}")
+                return render_template(
+                    "index.html",
+                    page_header="Access Denied",
+                )
+            return f(*args, **kwargs)
+
+        return wrapper
+
+    return decorator
+
 # ========== practice end ==============
 
 
@@ -40,17 +59,32 @@ def index():
 def login():
     if request.method == "POST":
         # ========== practice start ==============
+        if request.form["username"] not in USERS.keys():
+            return render_template("index.html", page_header="User not found")
+        elif request.form["password"] != USERS.get(request.form["username"]).get("password"):
+            return render_template("index.html", page_header="Wrong password")
+        else:
+            session["username"] = request.form["username"]
+            session["password"] = request.form["password"]
+            session["role"] = USERS.get(session["username"]).get("role")
+
         # ========== practice end ==============
         return redirect(url_for("data_list"))
     return render_template("login.html", page_header="Login")
 
 
 # ========== practice start ==============
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for("index"))
+
 # ========== practice end ==============
 
 
 @app.route("/data-list")
 # ========== practice start ==============
+@login_required()
 # ========== practice end ==============
 def data_list():
     # query string
@@ -87,6 +121,7 @@ def data_list():
 
 @app.route("/data-edit", methods=["GET", "POST"])
 # ========== practice start ==============
+@login_required(role="admin")
 # ========== practice end ==============
 def data_edit():
     if request.method == "POST":
